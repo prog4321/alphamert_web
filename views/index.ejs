@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaMERT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@400;700&display=swap"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/style.css">
+  </head>
+
+  <body>
+
+    <div class="main-block">
+      <div id="title">AlphaMERT</div>
+      <div id="subtitle">Find the fastest route on the MRT</div>
+
+      <form id="Form" method="post" action="/show-best-route">
+        <div id="period-container" class="parameters flex-container">
+          <div class="card-label">
+            Period:
+          </div>
+          <div class="card-dropdown">
+            <select id="peak-dropdown" class="parameters dropdown-text" name="period">
+              <option value="false">Off-peak</option>
+              <option value="true">Peak Hour</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="start-node-container" class="parameters flex-container">
+          <div class="card-label">
+            Start:
+          </div>
+          <div class="card-dropdown">
+            <select id="start-node-dropdown" class="parameters dropdown-text" name="startNodeId">
+              <% nodes.forEach(node=> { %>
+                <option value=<%=node.id%>><%=node.name%> (<%=node.id%>)</option>
+              <% }); %>
+            </select>
+          </div>
+        </div>
+
+        <div id="end-node-container" class="parameters flex-container">
+          <div class="card-label">
+            End:
+          </div>
+          <div class="card-dropdown">
+            <select id="end-node-dropdown" class="parameters dropdown-text" name="endNodeId">
+              <% nodes.forEach(node=> { %>
+                <option value=<%=node.id%>><%=node.name%> (<%=node.id%>)</option>
+              <% }); %>
+            </select>
+          </div>
+        </div>
+
+        <div class="buttonSection">
+          <button id="submitButton" class="button" type="submit">
+            Submit
+          </button>
+        </div>
+
+        <% if (locals.bestRoute) { %>
+          <script>
+            document.getElementById("peak-dropdown").value = '<%=period%>';
+            document.getElementById("start-node-dropdown").value = '<%=startNodeId%>';
+            document.getElementById("end-node-dropdown").value = '<%=endNodeId%>';
+          </script>
+          <table class="best-route-table">
+            <tr>
+              <th>Station Code</th>
+              <th>Station Name</th>
+              <th>Duration (min)</th>
+            </tr>
+            <% bestRoute.forEach(entry=> { %>
+              <tr>
+                <td><%= entry.node_id %></td>
+                <td><%= entry.node_name %></td>
+                <td><%= entry.cost %></td>
+              </tr>
+            <% }) %>
+          </table>
+          <div id="total-duration">
+            Total duration: <%=duration%> min
+          </div>
+        <% } %>
+      </form>
+
+      <div id="footer">
+        <div id="footer-item">Developed by prog4321<br>
+          View source code on GitHub <a href="https://github.com/prog4321/alphamert" target="_blank">here</a></div>
+      </div>
+
+    </div>
+
+    <div id="map-container">
+        <img draggable='false' id="mrt-map" src="../images/mrt_map.svg" alt="MRT Map"></img>
+    </div>
+    
+    <script>
+        // Here is some nifty Javascript contributed by StackOverflow user 'Bouh' which allows
+        // the user to click and drag the map to a different position, like with Google Maps.
+        // The thread can be found here:
+        // https://stackoverflow.com/questions/72255444/how-to-click-and-drag-a-large-view-like-in-google-maps
+
+      let _startX = 0,
+          _startY = 0,
+          _scrollTop = 0,
+          _scrollLeft = 0;
+
+      document.onmousedown = OnMouseDown;
+      document.onmouseup = OnMouseUp;
+
+      function OnMouseDown(event) {
+        document.onmousemove = OnMouseMove;
+        _startX = event.clientX;
+        _startY = event.clientY;
+        _scrollTop = document.documentElement.scrollTop;
+        _scrollLeft = document.documentElement.scrollLeft;
+      }
+
+      function OnMouseMove(event) {
+        window.scrollTo({
+          left: _scrollLeft + (_startX - event.clientX),
+          top: _scrollTop + (_startY - event.clientY)
+        });
+      }
+
+      function OnMouseUp() {
+        document.onmousemove = null;
+      }
+    </script>
+  </body>
+
+</html>

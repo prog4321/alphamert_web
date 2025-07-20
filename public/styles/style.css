@@ -1,0 +1,143 @@
+/* Original version created by prog4321, Aug 2024 */
+/* Revised by prog4321, Jul 2025 */
+
+body {
+  background-color: lightgrey;
+  margin: 0;
+  overflow: hidden;
+  }
+
+* {
+  font-family: "Sono", sans-serif;
+  color:black;
+  }
+
+div {
+  background-color: lightgrey;
+  display: block;
+  }
+
+.main-block {
+  display: flex;
+  flex-direction: column;
+  width: 21rem;
+  float: left;
+  margin: 0;
+  position: fixed;
+  overflow: auto;
+  height: 100vh;
+  }
+
+#title {
+  background-color: lightblue;
+  padding: 4px 6px 4px 12px;
+  font-size: 30pt;
+  font-weight: 900%;
+  }
+
+#subtitle {
+  background-color: lightgrey;
+  padding: 10px 4px 10px 12px;
+  margin-bottom: 4px;
+  font-size: 10pt;
+  font-style: italic;
+  }
+
+#map-container {
+  float: right;
+  width: 75%;
+  height: 100vh;
+  vertical-align: top;
+  }
+
+#mrt-map {
+  width: 1350px;
+  margin-top: 0px;
+  margin-right: 0px;
+  }
+
+.parameters {
+  font-size: 10pt;
+  padding: 4px 4px 4px 12px;
+  }
+
+.dropdown-text {
+  padding: 4px 4px 4px 2px;
+  }
+
+.button {
+  position:relative;
+  font-size: 10pt;
+  height: 45px;
+  width: 125px;
+  background-color: darkblue;
+  border-radius: 8px;
+  left:12px;
+  color: whitesmoke;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  }
+
+#footer {
+  padding: 4px 4px 4px 12px;
+  flex-direction: column;
+  font-size: 10pt;
+  }
+
+#footer-item, a {
+  color: blue;
+  }
+
+.flex-container {
+  display: flex;
+  font-size: 10pt;
+  margin-bottom: 4px;
+  }
+
+.card-label {
+  display:inline-block;
+  min-width: 60px;
+  padding-top:5px;
+  }
+
+.card-dropdown {
+  display:inline-block;
+  min-width: 10rem;
+  }
+
+.best-route-table {
+  font-size: 0.9rem;
+  border-collapse: collapse;
+  border: 1rem black;
+  text-align: left;
+  border: 1px solid black;
+  margin: 12px;
+  margin-bottom: 20px;
+  }
+
+.best-route-table tr td {
+  border-collapse: collapse;
+  border: 1px solid black;
+  background-color: rgb(233, 233, 233);
+  padding: 3px;
+  }
+
+.best-route-table th {
+  border: 1px solid black;
+  padding: 2px 4px;
+  }
+
+#total-duration {
+  font-weight: bold;
+  margin: 12px;
+  }
+
+@media (max-width: 700px) {
+  #mrt-map {
+    display: none;
+    }
+
+  .main-block {
+    width: 100%;
+    }
+}
