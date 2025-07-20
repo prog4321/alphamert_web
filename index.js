@@ -4,7 +4,7 @@ import axios from "axios";
 import pg from "pg";
 
 const app = express();
-const port = 5000;
+const port = 10001;
 
 var db = new pg.Client({
   user: "alphamert_user",
