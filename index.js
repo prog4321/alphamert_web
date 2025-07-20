@@ -8,11 +8,10 @@ const port = 3000;
 
 var db = new pg.Client({
   user: "alphamert_user",
-  host: "dpg-d050fcmuk2gs73e4h7d0-a.singapore-postgres.render.com",
+  host: "dpg-d050fcmuk2gs73e4h7d0-a", // host name if node server is running on render.com
   database: "alphamert",
   password: "alphamert",
-  port: 5432,
-  ssl: true
+  port: 5432 // include "ssl:true" as additional parameter if node server is not running on render.com
   });
 db.connect();
 
