@@ -23,7 +23,8 @@ div {
   float: left;
   margin: 0;
   position: fixed;
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
   }
 
