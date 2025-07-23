@@ -4,7 +4,7 @@ import axios from "axios";
 import pg from "pg";
 
 const app = express();
-const port = 10000;
+const port = 3000;
 
 var db = new pg.Client({
   user: "alphamert_user",
@@ -82,4 +82,8 @@ app.post("/show-best-route", async (req, res) => {
               startNodeId: req.body.startNodeId,
               endNodeId: req.body.endNodeId
             });
+});
+
+app.listen(port, () => {
+  console.log(`Backend server is running at port:${port}`);
 });
